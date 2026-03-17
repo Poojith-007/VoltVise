@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4FF">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#1565C0"
+        app:elevation="0dp">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Energy Saving Tips"
+            app:titleTextColor="#FFFFFF"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="#FFFFFF"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="16dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header Banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#1565C0"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💡"
+                        android:textSize="36dp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Save Energy, Save Money"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Small habits can reduce your electricity bill by up to 30%"
+                        android:textSize="13sp"
+                        android:textColor="#B3E5FC"
+                        android:layout_marginTop="4dp"
+                        android:lineSpacingMultiplier="1.4"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Category: Lighting -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡 Lighting"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1C1E"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <include layout="@layout/item_tip"
+                        android:id="@+id/tip1"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip"
+                        android:id="@+id/tip2"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip"
+                        android:id="@+id/tip3"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Category: Appliances -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏠 Appliances"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1C1E"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <include layout="@layout/item_tip" android:id="@+id/tip4"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip" android:id="@+id/tip5"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip" android:id="@+id/tip6"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip" android:id="@+id/tip7"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Category: Cooling & Heating -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❄️ Cooling and Heating"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1C1E"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <include layout="@layout/item_tip" android:id="@+id/tip8"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip" android:id="@+id/tip9"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip" android:id="@+id/tip10"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Category: Standby Power -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔌 Standby Power"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1C1E"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <include layout="@layout/item_tip" android:id="@+id/tip11"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginStart="56dp"/>
+                    <include layout="@layout/item_tip" android:id="@+id/tip12"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

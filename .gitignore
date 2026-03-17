@@ -1,0 +1,86 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+
+
+# Built application files
+*.apk
+*.aab
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+/build/
+/app/build/
+/captures/
+.gradle/
+gen/
+out/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio and IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+modules.xml
+gradle.xml
+project.iml
+# Optional: Keystore files (uncomment if you don't want to commit them)
+# *.jks
+# *.keystore
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild/
+.cxx/
+
+# Google Services (e.g. APIs or Firebase) - typically checked in, but good to be aware of
+# google-services.json
+
+# Profiling and inspection files
+*.hprof
+*.snapshot
+*.pyc
+*.pyo
+*.pyd
+
+# Lint
+lint/reports/
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+
+# IDE-specific folder from your project structure
+/.androidide/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+._*
