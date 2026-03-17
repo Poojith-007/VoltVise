@@ -7,40 +7,63 @@ import java.util.concurrent.TimeUnit
 
 object WorkScheduler {
 
-    // Schedule daily reminder at user's chosen time (default 8:00 PM)
-    fun scheduleDailyReminder(context: Context, hourOfDay: Int = 20, minute: Int = 0) {
-        val now = Calendar.getInstance()
+    fun scheduleDailyReminder(context: Context) {
+        val prefs = context.getSharedPreferences("voltvise_prefs", Context.MODE_PRIVATE)
+        val enabled = prefs.getBoolean("reminder_enabled", true)
+        if (!enabled) return
+
+        val hourOfDay = prefs.getInt("reminder_hour", 20)
+        val minute    = prefs.getInt("reminder_minute", 0)
+
+        val now    = Calendar.getInstance()
         val target = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, hourOfDay)
             set(Calendar.MINUTE, minute)
             set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
         }
 
-        // If chosen time already passed today, schedule for tomorrow
+        // If time already passed today → schedule for tomorrow
         if (target.before(now)) {
             target.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        val delay = target.timeInMillis - now.timeInMillis
+        val delayMs = target.timeInMillis - now.timeInMillis
 
-        val reminderRequest = OneTimeWorkRequestBuilder<ReminderWorker>()
-            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+        // ✅ Use PERIODIC so it repeats every 24 hours
+        val reminderRequest = PeriodicWorkRequestBuilder<ReminderWorker>(
+            24, TimeUnit.HOURS
+        )
+            .setInitialDelay(delayMs, TimeUnit.MILLISECONDS)
             .addTag("daily_reminder")
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiresBatteryNotLow(false)
+                    .build()
+            )
             .build()
 
-        WorkManager.getInstance(context).enqueueUniqueWork(
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
             "daily_reminder",
-            ExistingWorkPolicy.REPLACE,
+            ExistingPeriodicWorkPolicy.REPLACE,
             reminderRequest
         )
     }
 
-    // Schedule bill alert check — runs every day
     fun scheduleBillAlertCheck(context: Context) {
+        val prefs   = context.getSharedPreferences("voltvise_prefs", Context.MODE_PRIVATE)
+        val enabled = prefs.getBoolean("bill_alert_enabled", true)
+        if (!enabled) return
+
         val billAlertRequest = PeriodicWorkRequestBuilder<BillAlertWorker>(
-            1, TimeUnit.DAYS
+            24, TimeUnit.HOURS
         )
             .addTag("bill_alert")
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiresBatteryNotLow(false)
+                    .build()
+            )
             .build()
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
@@ -52,5 +75,9 @@ object WorkScheduler {
 
     fun cancelReminder(context: Context) {
         WorkManager.getInstance(context).cancelUniqueWork("daily_reminder")
+    }
+
+    fun cancelBillAlert(context: Context) {
+        WorkManager.getInstance(context).cancelUniqueWork("bill_alert_check")
     }
 }

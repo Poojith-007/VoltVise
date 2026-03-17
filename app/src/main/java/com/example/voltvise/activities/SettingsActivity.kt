@@ -12,6 +12,8 @@ import com.example.voltvise.utils.WorkScheduler
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import androidx.work.WorkManager
+import com.example.voltvise.utils.NotificationHelper
+import com.example.voltvise.utils.AlarmScheduler
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -67,6 +69,7 @@ class SettingsActivity : AppCompatActivity() {
         saveBtn.setOnClickListener {
             val threshold = (thresholdSeekBar.progress / 100) * 100
 
+            // Save preferences FIRST
             prefs.edit().apply {
                 putBoolean("reminder_enabled", reminderSwitch.isChecked)
                 putBoolean("bill_alert_enabled", billAlertSwitch.isChecked)
@@ -76,20 +79,31 @@ class SettingsActivity : AppCompatActivity() {
                 apply()
             }
 
-            // Schedule or cancel based on toggle
+            // Schedule using AlarmManager (exact time)
             if (reminderSwitch.isChecked) {
-                WorkScheduler.scheduleDailyReminder(this, selectedHour, selectedMinute)
+                AlarmScheduler.scheduleDailyReminder(this)
+                val timeStr = formatTime(selectedHour, selectedMinute)
+                Toast.makeText(
+                    this,
+                    "Reminder set for $timeStr daily ✓",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                WorkScheduler.cancelReminder(this)
+                AlarmScheduler.cancelReminder(this)
+                Toast.makeText(this, "Reminder cancelled", Toast.LENGTH_SHORT).show()
             }
 
+            // Bill alert still uses WorkManager (doesn't need exact time)
             if (billAlertSwitch.isChecked) {
                 WorkScheduler.scheduleBillAlertCheck(this)
             } else {
                 WorkManager.getInstance(this).cancelUniqueWork("bill_alert_check")
             }
+        }
 
-            Toast.makeText(this, "Settings saved!", Toast.LENGTH_SHORT).show()
+        findViewById<MaterialButton>(R.id.testNotificationBtn).setOnClickListener {
+            NotificationHelper.showDailyReminder(this)
+            Toast.makeText(this, "Test notification sent!", Toast.LENGTH_SHORT).show()
         }
     }
 

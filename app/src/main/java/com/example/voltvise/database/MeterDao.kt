@@ -15,4 +15,7 @@ interface MeterDao {
 
     @Query("SELECT * FROM meter_readings ORDER BY id DESC LIMIT 1")
     suspend fun getLastReading(): MeterEntity?
+
+    @Query("DELETE FROM meter_readings")
+    suspend fun deleteAll()
 }

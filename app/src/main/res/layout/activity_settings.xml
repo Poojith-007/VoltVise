@@ -189,5 +189,15 @@
             app:cornerRadius="12dp"
             app:backgroundTint="#1565C0"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testNotificationBtn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:text="🔔 Send Test Notification"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            app:backgroundTint="#00897B"/>
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
