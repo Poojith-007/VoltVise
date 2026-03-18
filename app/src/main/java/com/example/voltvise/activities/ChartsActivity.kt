@@ -18,6 +18,16 @@ class ChartsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_charts)
 
+        // Safe version — won't crash if toolbar not found
+        val toolbar = findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar)
+        if (toolbar != null) {
+            setSupportActionBar(toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            toolbar.setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val lineChart = findViewById<LineChart>(R.id.usageLineChart)
