@@ -28,8 +28,6 @@ class ChartsActivity : AppCompatActivity() {
             }
         }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val lineChart = findViewById<LineChart>(R.id.usageLineChart)
         val barChart  = findViewById<BarChart>(R.id.usageBarChart)
 

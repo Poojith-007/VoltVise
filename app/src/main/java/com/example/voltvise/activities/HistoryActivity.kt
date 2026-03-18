@@ -27,8 +27,6 @@ class HistoryActivity : AppCompatActivity() {
             }
         }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val recyclerView = findViewById<RecyclerView>(R.id.historyRecycler)
 
         recyclerView.layoutManager = LinearLayoutManager(this)

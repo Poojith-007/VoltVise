@@ -34,8 +34,6 @@ class AddReadingActivity : AppCompatActivity() {
             }
         }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         readingInput = findViewById(R.id.meterReadingInput)
 
         val saveBtn = findViewById<Button>(R.id.saveReadingBtn)
